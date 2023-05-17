@@ -27,8 +27,7 @@ class CarManager():
                 self.allcars.append(new_car)
 
         
-    def movecar(self):
+    def movecar(self, increment):
          for car in self.allcars:
-              car.backward(STARTING_MOVE_DISTANCE)
-
+              car.backward(STARTING_MOVE_DISTANCE + increment*MOVE_INCREMENT) 
 
