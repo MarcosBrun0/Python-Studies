@@ -6,37 +6,43 @@ import pandas
 
 
 screen = turtle.Screen()
+screen.setup(600,600)
 screen.bgcolor("lightblue")
-screen.addshape("blank_states_img.gif")
+screen.addshape("/home/mb/Documents/codes/PythonCourse/day25-csv/us-states-game-start/blank_states_img.gif")
 
 
-tur = turtle.Turtle("blank_states_img.gif")
+tur = turtle.Turtle("/home/mb/Documents/codes/PythonCourse/day25-csv/us-states-game-start/blank_states_img.gif")
 
-data = pandas.read_csv("50_states.csv")
+data = pandas.read_csv("/home/mb/Documents/codes/PythonCourse/day25-csv/us-states-game-start/50_states.csv")
 print(data)
 
+all_states = data.state.to_list()
+
+
+writer = turtle.Turtle()
+writer.hideturtle()
+writer.penup()
 
 
 
 
+guessed_states = []
+while len(guessed_states) < 50:
+
+    answer = screen.textinput(f"Guess States:{len(guessed_states)}/50","Type State name").title()
+    
+    for state in all_states:
+        if answer == state:
+            guessed_states.append(answer)
+            state_data = data[data.state == answer]
+            print(answer)
+            cor = (int(state_data.x), int(state_data.y))
+            print(cor)
+            writer.goto(cor)
+            writer.write(f"{answer}")
 
 
-
-
-
-game_is_on = True
-while game_is_on:
-
-    answer = screen.textinput("50 States","Type State name")
-    print(answer)
-    if data[data["state"] == answer]:
-
-        print("oi")
-
-
-
-
-
+    
 
 
 screen.exitonclick()
