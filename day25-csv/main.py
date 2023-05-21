@@ -1,17 +1,31 @@
 import pandas
 
-data = pandas.read_csv("weather_data.csv")
-soma = 0
+# data = pandas.read_csv("weather_data.csv")
+# soma = 0
+#
+# temp_Lista = data["temp"].tolist()
+# print(temp_Lista)
+#
+# maxtemp = (data["temp"].max())
+#
+#
+# print(data[data.temp == maxtemp])
 
-temp_Lista = data["temp"].tolist()
-print(temp_Lista)
-quant = len(temp_Lista)
-print(quant)
-for temp in temp_Lista:
-    soma += temp
+data = pandas.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv")
 
-print(soma)
-media = soma/quant
+graysquarrel = len(data[data["Primary Fur Color"] == "Gray"])
+cinnamonsquarrel=len(data[data["Primary Fur Color"] == "Cinnamon"])
+blacksquarrel=len(data[data["Primary Fur Color"] == "Black"])
 
+data_dict = {
 
-print(media)
+    "Fur_Color": ["Gray", "Cinnamon", "Black"],
+    "Count": [ graysquarrel, cinnamonsquarrel, blacksquarrel ]
+
+}
+
+print(data_dict)
+
+df = pandas.DataFrame(data_dict)
+
+df.to_csv("squirrel_cout.csv")
