@@ -7,7 +7,17 @@ import time
 
 data = pandas.read_csv("data/french_words.csv")
 to_learn_dict = data.to_dict(orient="records")
+
+print(to_learn_dict)
 card_atual = {}
+
+
+
+
+
+
+
+
 
 
 
@@ -17,8 +27,8 @@ def next_card():
     windows.after_cancel(flip_timer)
     card_atual = random.choice(to_learn_dict)
 
-    canvas.itemconfig(canvas_title, text="French")
-    canvas.itemconfig(canvas_word, text=card_atual["French"])
+    canvas.itemconfig(canvas_title, text="French", fill="black")
+    canvas.itemconfig(canvas_word, text=card_atual["French"],fill="black")
     canvas.itemconfig(canvas_img, image= Card_Front)
     print(card_atual)
 
@@ -29,8 +39,26 @@ def reveal_word():
 
 
     canvas.itemconfig(canvas_img, image=Card_Back)
-    canvas.itemconfig(canvas_title, text="English")
-    canvas.itemconfig(canvas_word, text= card_atual["English"])
+    canvas.itemconfig(canvas_title, text="English", fill="white")
+    canvas.itemconfig(canvas_word, text= card_atual["English"], fill="white")
+
+
+
+
+
+def remove_word():
+    global card_atual
+    to_learn_dict.remove(card_atual)
+    dados = pandas.DataFrame(to_learn_dict)
+    words_to_learn = dados.to_csv()
+
+    print(dados)
+    f=open("words_to_learn.csv","a")
+    f.write(words_to_learn)
+    f.close()
+    next_card()
+
+
 
 
 BACKGROUND_COLOR = "#B1DDC6"
@@ -57,7 +85,7 @@ Unknown_button.config(highlightthickness=0, background=BACKGROUND_COLOR)
 Unknown_button.grid(row=2,column=2)
 
 check_img = tkinter.PhotoImage(file="images/right.png")
-check_button = tkinter.Button(image=check_img, command=next_card)
+check_button = tkinter.Button(image=check_img, command=remove_word)
 check_button.config(highlightthickness=0,bg=BACKGROUND_COLOR)
 check_button.grid(row=2,column=0)
 next_card()
