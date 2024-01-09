@@ -5,61 +5,48 @@ import csv
 import pandas
 import time
 
-data = pandas.read_csv("data/french_words.csv")
+
+try:
+    data = pandas.read_csv("data/words_to_learn.csv")
+except FileNotFoundError:
+    print("File not Found")
+    data = pandas.read_csv("data/french_words.csv")
+
+
+
+
 to_learn_dict = data.to_dict(orient="records")
 
 print(to_learn_dict)
 card_atual = {}
 
-
-
-
-
-
-
-
-
-
-
-
 def next_card():
+
+
     global card_atual,flip_timer
     windows.after_cancel(flip_timer)
     card_atual = random.choice(to_learn_dict)
-
     canvas.itemconfig(canvas_title, text="French", fill="black")
     canvas.itemconfig(canvas_word, text=card_atual["French"],fill="black")
     canvas.itemconfig(canvas_img, image= Card_Front)
     print(card_atual)
 
-
     flip_timer =windows.after(3000, func=reveal_word)
 
 def reveal_word():
-
 
     canvas.itemconfig(canvas_img, image=Card_Back)
     canvas.itemconfig(canvas_title, text="English", fill="white")
     canvas.itemconfig(canvas_word, text= card_atual["English"], fill="white")
 
-
-
-
-
 def remove_word():
+
     global card_atual
     to_learn_dict.remove(card_atual)
     dados = pandas.DataFrame(to_learn_dict)
-    words_to_learn = dados.to_csv()
+    dados.to_csv("data/words_to_learn.csv", index=False)
 
-    print(dados)
-    f=open("words_to_learn.csv","a")
-    f.write(words_to_learn)
-    f.close()
     next_card()
-
-
-
 
 BACKGROUND_COLOR = "#B1DDC6"
 
