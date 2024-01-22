@@ -8,8 +8,8 @@ year = now.year
 month = now.month
 day_of_week = now.weekday()
 
-my_email = "marcosbrunocampos2@gmail.com"
-my_password = "jhrbtpgcujiqklcr"
+my_email = "@gmail.com"
+my_password = ""
 
 if day_of_week == 4:
     with open("quotes.txt", "r") as quotes:
