@@ -1,7 +1,5 @@
 import requests
 import datetime
-
-
 My_lat = -21.754530
 My_lng = -41.324612
 

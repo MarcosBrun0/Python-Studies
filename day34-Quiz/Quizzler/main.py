@@ -1,4 +1,4 @@
-from question_model import Question
+from question_model import Question 
 from data import Qdata
 from quiz_brain import QuizBrain
 from ui import QuizzInterface
@@ -12,7 +12,7 @@ for question in Qdata:
 
 quiz = QuizBrain(question_bank)
 
-QuizzInterface()
+QuizzInterface(quiz)
 #while quiz.still_has_questions():
 #    quiz.next_question()
 
