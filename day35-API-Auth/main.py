@@ -30,4 +30,4 @@ if will_rain:
     with smtplib.SMTP("smtp.gmail.com") as conection:
         conection.starttls()
         conection.login(user=email,password=password)
-        conection.sendmail(from_addr=email,to_addrs=mbrunocampos20@gmail.com, msg=f"Subject:Its gonna Rain today\n\n will be {descriptiom}, with the temperature feels of {feels_like_data} ")
+        conection.sendmail(from_addr=email,to_addrs="mbrunocampos20@gmail.com", msg=f"Subject:Its gonna Rain today\n\n will be {descriptiom}, with the temperature feels of {feels_like_data} ")
