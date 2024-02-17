@@ -1,12 +1,46 @@
-import requests, pprint
-class FlightSearch:
-    #This class is responsible for talking to the Flight Search API.
-    def __init__(self):
-        self.sheety_url = "https://api.sheety.co/1ffd929df22e32b9c0d35457dd58501c/flightDeals/prices"
+import requests,config,datetime
 
-        self.sheety_response = requests.get(self.sheety_url)
-        self.sheety_response.raise_for_status()
-        self.sheet_data = self.sheety_response.json()
-        pprint.pprint(sheet_data)
-        for city in sheet_data['prices']:
-            city['iataCode'] = "Testing"
+TEQUILA_ENDPOINT = "https://api.tequila.kiwi.com/locations/query"
+TEQUILA_API_KEY = config.tequila_api
+
+
+
+headers = {
+    'apikey': TEQUILA_API_KEY
+}
+
+class FlightSearch:
+
+    def __init__(self):
+        self.data = None
+
+    def search_for_flight(self,citycode):
+        tomorrowdate = datetime.datetime.now() + datetime.timedelta(hours=24)
+        sixmonthslater = datetime.datetime.now() + datetime.timedelta(days=(30 * 6))
+        tomorrowdate = str(datetime.datetime.strftime(tomorrowdate,"%d/%m/%y"))
+        sixmonthslater = str(datetime.datetime.strftime(sixmonthslater,"%d/%m/%y"))
+        query = {
+            "fly_from": "LON",
+            "fly_to": citycode,
+            "date_from": "10/03/2024",
+            "date_to": "10/08/2024",
+            "nights_in_dst_from": 7,
+            "nights_in_dst_to": 28,
+            "one_for_city": 1,
+            "max_stopovers": 0,
+            "curr": "GBP"
+        }
+        print(citycode,tomorrowdate,sixmonthslater)
+        tequila_request = requests.get(url=f"https://api.tequila.kiwi.com/v2/search",headers=headers, params=query)
+        tequila_request.raise_for_status()
+        data = tequila_request.json()
+        print(data)
+        return data
+    def get_destination_code(self, city_name):
+        # Return "TESTING" for now to make sure Sheety is working. Get TEQUILA API data later.
+
+        tequila_request = requests.get(url=f"{TEQUILA_ENDPOINT}?term={city_name}",headers=headers)
+        tequila_request.raise_for_status()
+        data = tequila_request.json()
+        code = data['locations'][0]['code']
+        return code
