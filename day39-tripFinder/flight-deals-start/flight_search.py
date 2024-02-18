@@ -17,13 +17,13 @@ class FlightSearch:
     def search_for_flight(self,citycode):
         tomorrowdate = datetime.datetime.now() + datetime.timedelta(hours=24)
         sixmonthslater = datetime.datetime.now() + datetime.timedelta(days=(30 * 6))
-        tomorrowdate = str(datetime.datetime.strftime(tomorrowdate,"%d/%m/%y"))
-        sixmonthslater = str(datetime.datetime.strftime(sixmonthslater,"%d/%m/%y"))
+        tomorrowdate = str(datetime.datetime.strftime(tomorrowdate,"%d/%m/%Y"))
+        sixmonthslater = str(datetime.datetime.strftime(sixmonthslater,"%d/%m/%Y"))
         query = {
             "fly_from": "LON",
             "fly_to": citycode,
-            "date_from": "10/03/2024",
-            "date_to": "10/08/2024",
+            "date_from": tomorrowdate,
+            "date_to": sixmonthslater,
             "nights_in_dst_from": 7,
             "nights_in_dst_to": 28,
             "one_for_city": 1,
