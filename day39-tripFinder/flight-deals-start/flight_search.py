@@ -30,7 +30,7 @@ class FlightSearch:
             "max_stopovers": 0,
             "curr": "GBP"
         }
-        print(citycode,tomorrowdate,sixmonthslater)
+        print(citycode)
         tequila_request = requests.get(url=f"https://api.tequila.kiwi.com/v2/search",headers=headers, params=query)
         tequila_request.raise_for_status()
         data = tequila_request.json()

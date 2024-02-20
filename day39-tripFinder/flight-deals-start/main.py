@@ -27,6 +27,17 @@ flight_list = []
 data = sheet_data[0]['iataCode']
 for city in sheet_data:
     data = city['iataCode']
-    FlightSearch().search_for_flight(data)
+    flight_list.append(FlightSearch().search_for_flight(data))
+
+
+great_deal = []
+#price = flight['data'][0]['price']
+for a in range(0,len(sheet_data)):
+    if sheet_data[a]['lowestPrice'] > flight_list[a]['data'][0]['price']:
+        print("great deal")
+        great_deal.append(flight_list[a])
+
+print(great_deal)
+
 
 
