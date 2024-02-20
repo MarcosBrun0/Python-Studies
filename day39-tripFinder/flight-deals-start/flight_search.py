@@ -1,7 +1,7 @@
-import requests,config,datetime
+import requests,Config,datetime
 
 TEQUILA_ENDPOINT = "https://api.tequila.kiwi.com/locations/query"
-TEQUILA_API_KEY = config.tequila_api
+TEQUILA_API_KEY = Config.tequila_api
 
 
 

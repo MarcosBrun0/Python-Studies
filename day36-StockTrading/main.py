@@ -1,4 +1,4 @@
-import config
+import Config
 import requests
 import datetime
 
@@ -9,7 +9,7 @@ def getstockdata():
 
     function="TIME_SERIES_DAILY"
     STOCK_ENDPOINT = "https://www.alphavantage.co/query"
-    response = requests.get(f"{STOCK_ENDPOINT}?function={function}&symbol={STOCK_NAME}&apikey={config.AlphaAdvantage_APIKEY}")
+    response = requests.get(f"{STOCK_ENDPOINT}?function={function}&symbol={STOCK_NAME}&apikey={Config.AlphaAdvantage_APIKEY}")
     response.raise_for_status()
     data = response.json()
     return data

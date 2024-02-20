@@ -1,4 +1,4 @@
-from config import weather_api_key,email,password
+from Config import weather_api_key,email,password
 import requests, smtplib
 
 lat ="-21.754530"

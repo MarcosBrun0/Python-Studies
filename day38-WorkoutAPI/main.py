@@ -1,5 +1,5 @@
 import requests
-import config
+import Config
 import datetime
 
 def exercise_api():
