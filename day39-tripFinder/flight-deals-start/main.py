@@ -32,7 +32,7 @@ for city in sheet_data:
 
 great_deal = []
 #price = flight['data'][0]['price']
-for a in range(0,len(sheet_data)):
+for a in range(0,len(sheet_data)-1):
     if sheet_data[a]['lowestPrice'] > flight_list[a]['data'][0]['price']:
         print("great deal")
         great_deal.append(flight_list[a])
