@@ -18,3 +18,6 @@ for article_tag in articles:
 
 
 print(article_tag,article_upvote,article_link,article_text)
+#I need to finish this day soon.
+
+≈
