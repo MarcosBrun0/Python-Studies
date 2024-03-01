@@ -1,4 +1,4 @@
-from question_model import Question 
+from question_model import Question
 from data import Qdata
 from quiz_brain import QuizBrain
 from ui import QuizzInterface
