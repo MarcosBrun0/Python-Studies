@@ -12,7 +12,7 @@ articles_links = []
 for item in articles:
     text = item.getText()
     articles_text.append(text)
-    links = item.__getattribute__("href")
+    links = (item.Get("href"))
     articles_links.append(links)
 
 article_upvote = [score.getText() for score in  soup.find_all(name="span", class_="score")]
