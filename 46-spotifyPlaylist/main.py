@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import Config,spotipy,requests
-from spotipy.oauth2 import SpotifyOAuth
+from spoti  py.oauth2 import SpotifyOAuth
 
 date = input("What year you want to travel? format YYYY-MM-DD:")
 #https://www.billboard.com/charts/hot-100/2024-03-09/ example of how the site adress works, after the slash is the date

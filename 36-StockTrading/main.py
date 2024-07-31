@@ -31,14 +31,6 @@ def getNews():
     return data
 
 
-
-
-
-
-
-
-
-
 #date config
 today = datetime.date.today()
 day = str(today)[8:]
